@@ -1,0 +1,3 @@
+08:00 Order_001 Created
+08:05 Order_001 Assigned to Waterbus (Bach Dang)
+08:35 Order_001 Delivered successfully
