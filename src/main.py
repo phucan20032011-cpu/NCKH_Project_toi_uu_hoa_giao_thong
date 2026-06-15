@@ -11,8 +11,11 @@ from simulation import simulation
 def main():
     os.makedirs("results", exist_ok=True)
 
-    metro, waterbus, hubs, orders = load_data()
-    if metro is None: return
+    # Cập nhật nhận thêm biến dữ liệu metro_edges từ load_data()
+    metro, metro_edges, waterbus, hubs, orders = load_data()
+    if metro is None:
+        print("[!] Lỗi nạp dữ liệu. Kết thúc Pipeline.")
+        return
 
     graph_path = "results/multimodal_graph.pkl"
     G = None
@@ -22,11 +25,12 @@ def main():
                 G = pickle.load(f)
             print("[2/7] Graph loaded from cache.")
         except Exception:
-            print("[!] Cache lỗi. Tạo lại Graph...")
+            print("[!] Cache lỗi hoặc cấu trúc cũ không khớp. Tiến hành tạo lại Graph...")
             os.remove(graph_path)
 
     if G is None:
-        G = build_graph(metro, waterbus, graph_path)
+        # Cập nhật truyền đồng bộ metro_edges vào để xây dựng đồ thị
+        G = build_graph(metro, metro_edges, waterbus, graph_path)
 
     selected_hubs = select_hub(hubs, orders)
     routing_results = routing(G, orders, selected_hubs)

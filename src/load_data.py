@@ -26,14 +26,19 @@ def load_data(data_dir="data"):
         hubs = pd.read_csv(os.path.join(data_dir, "hub_candidates.csv"))
         orders = pd.read_csv(os.path.join(data_dir, "orders.csv"))
 
+        # Đọc thêm file danh sách cạnh nối của Metro
+        metro_edges = pd.read_csv(os.path.join(data_dir, "HCMC_Metro_Edges.csv"))
+
         # Áp dụng Data Cleaning
         metro = clean_dataframe(metro)
         waterbus = clean_dataframe(waterbus)
         hubs = clean_dataframe(hubs)
         orders = clean_dataframe(orders)
+        metro_edges = clean_dataframe(metro_edges)  # Làm sạch tiêu đề cột của file edges
 
-        print(f"  -> Loaded: {len(metro)} Metro, {len(waterbus)} Waterbus, {len(hubs)} Hubs, {len(orders)} Orders.")
-        return metro, waterbus, hubs, orders
+        print(
+            f"  -> Loaded: {len(metro)} Metro Stations, {len(metro_edges)} Metro Edges, {len(waterbus)} Waterbus, {len(hubs)} Hubs, {len(orders)} Orders.")
+        return metro, metro_edges, waterbus, hubs, orders
     except Exception as e:
         print(f"Lỗi khi load dữ liệu: {e}")
-        return None, None, None, None
+        return None, None, None, None, None
