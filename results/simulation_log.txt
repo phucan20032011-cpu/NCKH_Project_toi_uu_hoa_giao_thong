@@ -1,3 +1,42 @@
-08:00 Order_001 Created
-08:05 Order_001 Assigned to Waterbus (Bach Dang)
-08:35 Order_001 Delivered successfully
+==========================================================================================
+                     MULTIMODAL TRANSPORTATION SIMULATION SYSTEM LOG                      
+         Analysis of Order_101 Delivery under Peak Hour Congestion (17:00 - 18:00)        
+==========================================================================================
+
+[SCENARIO 1: ROAD ONLY (Traditional Motorcycle Delivery)]
+------------------------------------------------------------------------------------------
+17:00:00 [HUB_BEN_THANH] Order_101 (Weight: 5.0 kg) assigned to Shipper_027 (Motorcycle).
+17:02:15 [ROAD] Shipper_027 departs Hub Ben Thanh via Le Loi street.
+17:08:30 [TRAFFIC_CONGESTION] Shipper_027 is stuck near Pasteur junction. Road speed dropped to 10 km/h.
+17:25:40 [TRAFFIC_CONGESTION] Slow moving traffic on Ton Duc Thang street. High fuel consumption and emissions.
+17:42:10 [ROAD] Crossing Nguyen Huu Canh bridge, heavy traffic bottleneck.
+17:54:15 [DESTINATION] Shipper_027 arrives at customer location. Order delivered successfully.
+
+-> METRICS SUMMARY (ROAD ONLY):
+   - Total Delivery Time: 54.25 minutes
+   - Total Distance: 4.85 km
+   - Total Fuel/Wear Cost: 14,550 VND
+   - CO2 Emissions: 0.58 kg
+   - Status: Delivered (Delayed due to congestion)
+------------------------------------------------------------------------------------------
+
+[SCENARIO 4: ROAD + METRO (Multimodal Smart Delivery)]
+------------------------------------------------------------------------------------------
+17:00:00 [HUB_BEN_THANH] Order_101 (Weight: 5.0 kg) assigned to Multimodal Route (Shipper + Metro).
+17:01:30 [ROAD] Shipper_082 departs Hub Ben Thanh to nearest Metro Station.
+17:03:45 [TRANSFER_POINT] Shipper_082 arrives at Metro Station Ben Thanh.
+17:03:45 [SYSTEM_TRANSFER] Motorcycle parked. Package scanned and checked into Metro Station. Transfer fee: 7,500 VND.
+17:08:45 [METRO_PLATFORM] Boarding Metro Line 1 Train (Departing towards Ba Son). Wait time: 5 mins.
+17:09:00 [METRO_LINE] Train departs. Speed: 40 km/h (Fully insulated from road traffic congestion).
+17:14:15 [TRANSFER_POINT] Train arrives at Metro Station Ba Son.
+17:14:15 [SYSTEM_TRANSFER] Package unloaded. Transferred to Last-Mile Shipper_099. Transfer fee: 7,500 VND.
+17:16:30 [ROAD] Shipper_099 departs Metro Station Ba Son via Road to customer (Last-Mile).
+17:22:45 [DESTINATION] Shipper_099 arrives at customer location. Order delivered successfully.
+
+-> METRICS SUMMARY (ROAD + METRO MULTIMODAL):
+   - Total Delivery Time: 22.75 minutes
+   - Total Distance: 4.98 km (0.45 km Road + 3.8 km Metro + 0.73 km Road)
+   - Total Cost: 18,540 VND (3,540 VND Fuel + 15,000 VND Metro Tickets)
+   - CO2 Emissions: 0.13 kg (0.054 kg Road + 0.076 kg Metro)
+   - Status: Delivered (On-Time, 58% time savings, 77% CO2 emissions reduction)
+==========================================================================================

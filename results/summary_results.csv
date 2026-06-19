@@ -1,3 +1,9 @@
-scenario,avg_time,total_distance,CO2_emissions
-Full Multimodal,5.65780853013221,497.8871506516345,59.74645807819613
-Road Only,5.65780853013221,497.8871506516345,59.74645807819613
+traffic_condition,scenario,avg_time_min,total_distance_km,avg_distance_km,total_cost_vnd,avg_cost_vnd,total_co2_kg,avg_co2_kg,delivery_count
+Off-Peak,Full Multimodal,3.11,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Off-Peak,Road + Metro,3.11,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Off-Peak,Road + Waterbus,3.11,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Off-Peak,Road Only,3.11,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Peak,Full Multimodal,7.77,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Peak,Road + Metro,7.77,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Peak,Road + Waterbus,7.77,272.08,1.55,816253.66,4664.31,32.65,0.19,175
+Peak,Road Only,7.77,272.08,1.55,816253.66,4664.31,32.65,0.19,175
