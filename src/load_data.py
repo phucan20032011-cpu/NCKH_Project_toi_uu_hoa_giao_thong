@@ -36,6 +36,12 @@ def load_data(data_dir="data"):
         orders = clean_dataframe(orders)
         metro_edges = clean_dataframe(metro_edges)  # Làm sạch tiêu đề cột của file edges
 
+        # Đảm bảo đầy đủ thuộc tính cho Order theo mô hình dữ liệu mức cao
+        if 'weight' not in orders.columns:
+            orders['weight'] = 5.0  # Mặc định 5.0 kg
+        if 'status' not in orders.columns:
+            orders['status'] = 'pending'
+
         print(
             f"  -> Loaded: {len(metro)} Metro Stations, {len(metro_edges)} Metro Edges, {len(waterbus)} Waterbus, {len(hubs)} Hubs, {len(orders)} Orders.")
         return metro, metro_edges, waterbus, hubs, orders

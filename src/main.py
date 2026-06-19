@@ -1,5 +1,10 @@
 import os
+import sys
 import pickle
+
+# Đảm bảo terminal in được tiếng Việt UTF-8 không lỗi trên Windows
+sys.stdout.reconfigure(encoding='utf-8')
+
 from load_data import load_data
 from build_graph import build_graph
 from select_hub import select_hub
@@ -29,8 +34,8 @@ def main():
             os.remove(graph_path)
 
     if G is None:
-        # Cập nhật truyền đồng bộ metro_edges vào để xây dựng đồ thị
-        G = build_graph(metro, metro_edges, waterbus, graph_path)
+        # Cập nhật truyền đồng bộ metro_edges, hubs và orders vào để xây dựng đồ thị động
+        G = build_graph(metro, metro_edges, waterbus, hubs, orders, graph_path)
 
     selected_hubs = select_hub(hubs, orders)
     routing_results = routing(G, orders, selected_hubs)
